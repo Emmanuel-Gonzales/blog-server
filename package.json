@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "db:config": "sequelize init:config",
+    "init:config": "sequelize init:config",
     "db:create": "sequelize db:create",
     "test-watch": "NODE_ENV=test jest --verbose --coverage --watchAll",
     "test": "NODE_ENV=test jest  --verbose --coverage"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +30,5 @@
     "sequelize-cli": "^6.6.0",
     "sqlite3": "^5.1.6",
     "supertest": "^6.3.3"
-  },
-  "devDependencies": {}
+  }
 }

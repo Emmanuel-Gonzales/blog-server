@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 // const logger = require('./middleware/logger.js');
 
-
+const router = require('./routes/index.js');
 
 const app = express();
 
@@ -23,6 +23,7 @@ app.get('/', (req, res, next) => {
   res.status(200).send('servers up');
 });
 
+app.use('/api/index', router);
 
 
 //catchalls
@@ -30,7 +31,7 @@ app.get('/', (req, res, next) => {
 // app.use(errorHandler);
 
 module.exports = {
-  app,
+  app: app,
   start: (port) => {
     app.listen(port, () => {
       console.log(`Server Up on ${port}`);
