@@ -2,7 +2,7 @@
 
 const { users } = require('../../models');
 
-module.exports = async (req, res, next) {
+module.exports = async (req, res, next) => {
   try {
     if (!req.headers.authorization) { next('Invalid Login'); }
 
