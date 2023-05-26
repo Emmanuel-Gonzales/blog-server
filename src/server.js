@@ -2,7 +2,10 @@
 
 const express = require('express');
 const cors = require('cors');
-// const logger = require('./middleware/logger.js');
+const notFoundHandler = require('./error-handlers/404.js');
+const errorHandler = require('./error-handlers/500.js');
+const authRoutes = require('./auth/routes.js');
+const logger = require('./middleware/logger.js');
 
 
 
@@ -13,10 +16,11 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(logger);
+app.use(logger);
 
 
 //routes
+app.use(authRoutes);
 
 //proof of life
 app.get('/', (req, res, next) => {
@@ -26,8 +30,8 @@ app.get('/', (req, res, next) => {
 
 
 //catchalls
-// app.use('*', notFoundHandler);
-// app.use(errorHandler);
+app.use('*', notFoundHandler);
+app.use(errorHandler);
 
 module.exports = {
   app,
