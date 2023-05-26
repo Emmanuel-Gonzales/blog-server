@@ -25,6 +25,22 @@ class Collection {
   delete(id){
     return this.model.destroy({  where: {id} });
   }
+  
+  async readAllWith(model) {
+    try {
+      let record = await this.model.findAll({include: {
+        model: model,
+      }});
+      return record;
+
+    } catch (error) {
+      console.error(error);
+      return error;
+
+    }
+  }
 }
+
+
 
 module.exports = Collection;
