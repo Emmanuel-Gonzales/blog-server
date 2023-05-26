@@ -7,7 +7,7 @@ const errorHandler = require('./error-handlers/500.js');
 const authRoutes = require('./auth/routes.js');
 const logger = require('./middleware/logger.js');
 
-
+const router = require('./routes/index.js');
 
 const app = express();
 
@@ -27,6 +27,7 @@ app.get('/', (req, res, next) => {
   res.status(200).send('servers up');
 });
 
+app.use('/api/index', router);
 
 
 //catchalls
@@ -34,7 +35,7 @@ app.use('*', notFoundHandler);
 app.use(errorHandler);
 
 module.exports = {
-  app,
+  app: app,
   start: (port) => {
     app.listen(port, () => {
       console.log(`Server Up on ${port}`);
